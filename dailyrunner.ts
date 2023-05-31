@@ -9,7 +9,7 @@ const tickerArray = tickerList.split(/\r?\n/);
 		capabilities: {
 			browserName: "firefox",
 			"moz:firefoxOptions": {
-				args: ["-headless"],
+				args: ["-headless","-no-sandbox"],
 				binary: "/usr/bin/firefox",
 			},
 		},
