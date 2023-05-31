@@ -4,7 +4,7 @@ RUN apt update
 
 RUN apt upgrade -y
 
-RUN apt install firefox -y
+RUN apt install firefox-esr-l10n-en-gb -y
 
 WORKDIR /app
 
