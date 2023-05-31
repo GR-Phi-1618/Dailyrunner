@@ -7,16 +7,16 @@ const tickerArray = tickerList.split(/\r?\n/);
 (async () => {
 	const browser = await remote({
 		capabilities: {
-			browserName: "chrome",
-			"goog:chromeOptions": {
-				args: ["--headless", "--disable-gpu"],
-				binary: "/usr/bin/google-chrome",
+			browserName: "firefox",
+			"moz:firefoxOptions": {
+				args: ["-headless"],
+				binary: "/usr/bin/firefox",
 			},
 		},
 	});
 	for (const ticker of tickerArray) {
 		await browser.url(
-			`https://www.bseindia.com/stock-share-price/abb-india-limited/abb/${ticker}`,
+			`https://www.bseindia.com/stock-share-price/abb-india-limited/abb/${ticker}`
 		);
 		const tem = await browser.$('strong[id="idcrval"]');
 		const closePrice = Number(await tem.getText());
@@ -28,9 +28,9 @@ const tickerArray = tickerList.split(/\r?\n/);
 		fs.appendFile(
 			`data/${ticker}`,
 			`${intraperc}\n${todayperc}\n`,
-			function (err) {
+			function(err) {
 				if (err) throw err;
-			},
+			}
 		);
 	}
 })();
